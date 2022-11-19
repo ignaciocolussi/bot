@@ -1,0 +1,40 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "Prueba Tecnica",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --silent tests/message.test.js ",
+    "test:watch": "npm run test -- --watch",
+    "start-dev": "cross-env NODE_ENV=development nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ignaciocolussi/bot.git"
+  },
+  "keywords": [
+    "bot",
+    "prueba",
+    "tecnica"
+  ],
+  "author": "IC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ignaciocolussi/bot/issues"
+  },
+  "homepage": "https://github.com/ignaciocolussi/bot#readme",
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

@@ -1,0 +1,28 @@
+var express = require('express');
+//var bodyParser = require('body-parser');
+const cors = require('cors')
+const errors = require('./middlewares/errors')
+
+// Ejecutar Express
+var app = express();
+app.use(cors())
+app.use(express.json())
+
+
+// Cargar archivos de rutas
+//var user_routes = require('./routes/user')
+
+
+// Middlewares
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+// Reescribir rutas
+app.use('/api', user_routes);
+
+
+app.use(errors);
+
+
+// Exportar el modulo
+module.exports = app;
