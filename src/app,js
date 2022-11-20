@@ -1,27 +1,52 @@
 var express = require('express');
-//var bodyParser = require('body-parser');
-const cors = require('cors')
-const errors = require('./middlewares/errors')
+const http = require('http')
+const WebSocket = require('ws');
+const uuidv4 = require('./utils/uuid')
+const HelperIntenciones = require('./helpers/intenciones');
+const HelperEntidades = require('./helpers/entidades');
+
+const intencionHelper = new HelperIntenciones();
+const entidadesHelper = new HelperEntidades();
 
 // Ejecutar Express
 var app = express();
-app.use(cors())
-app.use(express.json())
+
+const express = require('express')
 
 
-// Cargar archivos de rutas
-//var user_routes = require('./routes/user')
+
+const app = express();
+//initialize a simple http server
+const server = http.createServer(app);
+
+//initialize the WebSocket server instance
+const wss = new WebSocket.Server({ server });
+const clients = new Map();
 
 
-// Middlewares
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+wss.on('connection', (ws, req) => {
+    const id = uuidv4();
+    clients.set(ws, {id});
+    //connection is up, let's add a simple simple event
+    ws.on('message', (mes) => {
+        const message = JSON.parse(mes);
+        const metadata = clients.get(ws);
+        //log the received message and send it back to the client
+        console.debug(metadata);
+       
+        let intencion = intencionHelper.obtenerIntencion(message);
+        if(intencion.intencionConMayorPuntaje.intencion != "undefined"){
 
-// Reescribir rutas
-app.use('/api', user_routes);
+        }
+        
+        ws.message(`Lo siento, no he entendido tu mensaje. ${metadata.id}` )
+        //ws.close(ws);
+    });
 
-
-app.use(errors);
+    //send immediatly a feedback to the incoming connection    
+    ws.send(`Hola! ¿En qué puedo ayudarte? : id: ${id}`);
+    
+});
 
 
 // Exportar el modulo
