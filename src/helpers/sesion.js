@@ -3,15 +3,15 @@ const modeloConversacion = require('../modelo/conversacion')
 
 class sesionHelper {
     #clientes = new Map();
-    
-    nuevaSesion(ws, ip){
+
+    nuevaSesion(ws, ip) {
         let id = uuidv4();
         let fecha = Date.now();
-        this.#clientes.set(ws, {id, ip, fecha})
-        
+        this.#clientes.set(ws, { id, ip, fecha })
+
     }
 
-    getIp(){
+    getIP() {
         return this.#clientes.get(ws).ip;
     }
 
@@ -19,35 +19,35 @@ class sesionHelper {
         return this.#clientes.get(ws);
     }
 
-    setMensage(ws, msg){
-        this.#clientes.set(ws, {...this.#clientes.get(ws), mensaje: msg})
+    setMensage(ws, msg) {
+        this.#clientes.set(ws, { ...this.#clientes.get(ws), mensaje: msg })
     }
 
-    getMensaje(ws){
+    getMensaje(ws) {
         return this.#clientes.get(ws).mensaje;
     }
 
-    setIntencion(ws, int){
-        this.#clientes.set(ws, {...this.#clientes.get(ws), intencion: int})
+    setIntencion(ws, int) {
+        this.#clientes.set(ws, { ...this.#clientes.get(ws), intencion: int })
     }
 
-    getIntencion(ws){
+    getIntencion(ws) {
         return this.#clientes.get(ws).intencion.intencionConMayorPuntaje.intencion;
     }
 
-    getPuntajesIntenciones(ws){
+    getPuntajesIntenciones(ws) {
         return this.#clientes.get(ws).intencion.puntajes;
     }
 
-    setEntidades(ws, ent){
-        this.#clientes.set(ws, {...this.#clientes.get(ws), entidades: ent})
+    setEntidades(ws, ent) {
+        this.#clientes.set(ws, { ...this.#clientes.get(ws), entidades: ent })
     }
 
-    getEntidades(ws){
+    getEntidades(ws) {
         return this.#clientes.get(ws).entidades;
     }
 
-    async cerrarSesion(ws){
+    async cerrarSesion(ws) {
         let conversacion = new modeloConversacion();
         conversacion.id = this.#clientes.get(ws).id;
         conversacion.ip = this.#clientes.get(ws).ip;

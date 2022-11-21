@@ -27,8 +27,8 @@ wss.on('connection', (ws, req) => {
     console.debug(sesionHelper.getMetadata(ws));
     ws.on('message', (mes) => {
         controladoraMensajes.recibido(mes, ws, sesionHelper)
-        
-        
+
+
     });
 
     //send immediatly a feedback to the incoming connection    

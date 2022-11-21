@@ -11,11 +11,11 @@ var conversacionSchema = Schema({
     ip: String,
     mensaje: String,
     intencion: String,
-    entidades:[String],
-    puntajes:{},
-    fechaInicio:{type: Date},
-    fechaFin:{type: Date, default: Date.now},
-    respuesta:String
+    entidades: [String],
+    puntajes: {},
+    fechaInicio: { type: Date },
+    fechaFin: { type: Date, default: Date.now },
+    respuesta: String
 });
 
 
