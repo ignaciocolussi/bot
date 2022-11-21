@@ -4,15 +4,35 @@ class EntidadesHelper {
     }
 
      obtenerPais(req){
-        let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').split(" ");
-        
-            for (const pais of paises){
-              console.log(pais.nombre);
+        let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').toLowerCase().split(" ");
+            
+            for (const pais of this.entidades.paises){
+              
                 for(const palabra of newreq){
-                    let palabraSinGenero = palabra.slice(0, -1)
-                    let encontrada = (palabra == pais.pais || pais.nacionalidad.includes(palabraSinGenero))? true : false;
+                   
+                    
+                    let encontrada = (palabra == pais.pais)? true : false;
+                    
                     if(encontrada){
-                        return pais.nombre;
+                        return pais.pais;
+                    };
+
+                }
+            }
+    }
+
+    obtenerCiudad(req){
+        let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').toLowerCase().split(" ");
+            
+            for (const ciudad of this.entidades.ciudades){
+              
+                for(const palabra of newreq){
+                   
+                    
+                    let encontrada = (palabra == ciudad.nombre)? true : false;
+                    
+                    if(encontrada){
+                        return ciudad.nombre;
                     };
 
                 }

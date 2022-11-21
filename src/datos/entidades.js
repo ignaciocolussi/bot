@@ -4,4 +4,10 @@ const paises = [
     {"pais":"uruguay", "nacionalidad": "uruguayo"}
 ]
 
-module.exports ={paises}
+const ciudades = [
+    {"nombre":"rosario", "weather_id":3838583},
+    {"nombre":"montevideo", "weather_id":3441575},
+    {"nombre":"madrid", "weather_id":3117735}
+]
+
+module.exports ={paises, ciudades}

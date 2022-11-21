@@ -4,12 +4,11 @@ require('dotenv').config()
 var express = require('express');
 const http = require('http')
 const WebSocket = require('ws');
-const uuidv4 = require('./utils/uuid')
-const HelperIntenciones = require('./helpers/intenciones');
-const HelperEntidades = require('./helpers/entidades');
+const HelperSesion = require('./helpers/sesion')
+const mongo = require('./mongo');
+const sesionHelper = new HelperSesion();
 
-const intencionHelper = new HelperIntenciones();
-const entidadesHelper = new HelperEntidades();
+const controladoraMensajes = require('./controladora/mensajes');
 
 // Ejecutar Express
 var app = express();
@@ -20,33 +19,20 @@ const server = http.createServer(app);
 
 //initialize the WebSocket server instance
 const wss = new WebSocket.Server({ server });
-const clients = new Map();
+//const clients = new Map();
 
 
 wss.on('connection', (ws, req) => {
-    const id = uuidv4();
-    clients.set(ws, {id});
-    //connection is up, let's add a simple simple event
+    sesionHelper.nuevaSesion(ws, req.socket.remoteAddress);
+    console.debug(sesionHelper.getMetadata(ws));
     ws.on('message', (mes) => {
-        const message = JSON.parse(mes).string;
-        const metadata = clients.get(ws);
-        //log the received message and send it back to the client
-        console.debug(metadata);
-       
-        let resIntent = intencionHelper.obtenerIntencion(message);
-
-        if(resIntent.intencionConMayorPuntaje.puntaje !== undefined){
-            ws.send(`Ejecutar para intencion: ${resIntent.intencionConMayorPuntaje.intencion}`)
-        }else{
-            ws.send(`Lo siento, no he entendido tu mensaje. ${metadata.id}` )  
-        }
-        
+        controladoraMensajes.recibido(mes, ws, sesionHelper)
         
         
     });
 
     //send immediatly a feedback to the incoming connection    
-    ws.send(`Hola! ¿En qué puedo ayudarte? : id: ${id}`);
+    ws.send(`Hola! ¿En qué puedo ayudarte? : id: ${sesionHelper.getMetadata(ws).id}`);
 
 });
 
