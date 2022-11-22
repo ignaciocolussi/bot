@@ -1,11 +1,11 @@
 
 
 const saludoInicial = (ws, sesionHelper) => {
-    ws.send(`🤓 Hola! Estoy a tu disposicion! ¿Que consulta tienes?`)
+    sesionHelper.enviarMensaje(ws, `🤓 Hola! Estoy a tu disposicion! ¿Que consulta tienes?`)
 }
 
 const saludoFinal = (ws, sesionHelper) => {
-    ws.send(`Ha sido un gusto ayudarte. Hasta luego! 👋`)
+    sesionHelper.enviarMensaje(ws, `Ha sido un gusto ayudarte. Hasta luego! 👋`)
     sesionHelper.cerrarSesion(ws);
 }
 

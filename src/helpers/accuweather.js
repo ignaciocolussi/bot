@@ -13,13 +13,14 @@ class AccuWeatherHelper {
             language: 'es-es',
             q: localidad
         }
-
-        let clima = await axios.get('http://dataservice.accuweather.com/locations/v1/cities/search', { params });
+        
+        let clima = await axios.get('http://dataservice.accuweather.com/locations/v1/cities/search', { params }).catch((err) => console.error(err));
+        
         let id = clima.data[0].Key
-
+        
         // Ahora obtengo el clima 
         let response = await this.clima(id);
-        console.log(response);
+        
         return response;
 
     }
@@ -29,15 +30,15 @@ class AccuWeatherHelper {
         let params = {
             apikey: this.#api_key,
             language: 'es-es',
-            q: localidad
+            q: ip
         }
 
         let clima = await axios.get('http://dataservice.accuweather.com/locations/v1/cities/ipaddress', { params });
-        let id = clima.data[0].Key
+        let id = clima.data.Key
 
         // Ahora obtengo el clima 
         let response = await this.clima(id);
-        console.log(response);
+        
         return response;
 
     }
@@ -50,7 +51,7 @@ class AccuWeatherHelper {
             metric: true
         }
         let data = await axios.get('http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + id, { params })
-
+        
         const forecast = data.data.DailyForecasts[0];
         //console.debug(forecast);
         return (`Hoy estara ${forecast.Day.IconPhrase}. Con temperaturas minimas de ${forecast.Temperature.Minimum.Value} ° C y maximas de ${forecast.Temperature.Maximum.Value} ° C. `)

@@ -3,13 +3,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const mensaje = require('./mensaje');
 
-
-// Modelo de MESSAGE
-var conversacionSchema = Schema({
+// Modelo de conversacion
+var conversacion = Schema({
     id: String,
     ip: String,
-    mensaje: String,
+    mensajes:[mensaje],
     intencion: String,
     entidades: [String],
     puntajes: {},
@@ -20,6 +20,7 @@ var conversacionSchema = Schema({
 
 
 
-module.exports = mongoose.model('Conversacion', conversacionSchema);
+module.exports = mongoose.model('Conversacion', conversacion);
+
 //lowercase y pluralizar el nombre => topics se llamara la coleccion de datos en mongodb.
 //topics => documentos (schema). 

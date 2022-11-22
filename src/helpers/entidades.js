@@ -38,6 +38,24 @@ class EntidadesHelper {
             }
         }
     }
+
+    obtenerMonedas(req) {
+        let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').toLowerCase().split(" ");
+
+        for (const palabra of newreq) {
+
+            for (const moneda of this.entidades.monedas) {
+
+
+                let encontrada = (palabra == moneda) ? true : false;
+
+                if (encontrada) {
+                    return moneda;
+                };
+
+            }
+        }
+    }
 }
 
 module.exports = EntidadesHelper;

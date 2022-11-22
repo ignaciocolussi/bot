@@ -10,4 +10,7 @@ const ciudades = [
     { "nombre": "madrid", "weather_id": 3117735 }
 ]
 
-module.exports = { paises, ciudades }
+
+const monedas = ["bitcoin", "cardano"];
+
+module.exports = { paises, ciudades, monedas}

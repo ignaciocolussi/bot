@@ -11,26 +11,28 @@ const clima = async (ws, sesionHelper) => {
     if (ciudad) {
         // Se buscara el clima por ciudad;
         try {
-
+            console.log(`Buscar clima de ${ciudad}`);
             let clima = await AccuWeatherHelper.obtenerClimaPorLocalidad(ciudad);
-            console.debug(clima);
-            ws.send(clima);
+            
+            sesionHelper.enviarMensaje(ws, clima) 
+            
 
         } catch (error) {
-            ws.send(`Upss... Ha habido un error al obtener los datos.. 😭`)
+            sesionHelper.enviarMensaje(ws, `Upss... Ha habido un error al obtener los datos.. 😭`)
         }
 
     } else {
         //Se buscara el clima de la localizacion por IP
-        console.log('Se buscara el clima de la localizacion por IP')
+        
         try {
-            let ip = '142.251.133.14';
-            let clima = await AccuWeatherHelper.obtenerClimaPorIP(ip);
+            console.debug(sesionHelper.getIP(ws));
+            let clima = await AccuWeatherHelper.obtenerClimaPorIP(sesionHelper.getIP(ws));
             console.debug(clima);
-            ws.send(clima);
+            sesionHelper.enviarMensaje(ws, clima);
 
         } catch (error) {
-            ws.send(`Upss... Ha habido un error al obtener los datos.. 😭`)
+            console.debug(error);
+            sesionHelper.enviarMensaje(ws, `Upss... Ha habido un error al obtener los datos.. 😭`)
         }
     }
 

@@ -19,24 +19,27 @@ const server = http.createServer(app);
 
 //initialize the WebSocket server instance
 const wss = new WebSocket.Server({ server });
-//const clients = new Map();
+
 
 
 wss.on('connection', (ws, req) => {
     sesionHelper.nuevaSesion(ws, req.socket.remoteAddress);
-    console.debug(sesionHelper.getMetadata(ws));
-    ws.on('message', (mes) => {
-        controladoraMensajes.recibido(mes, ws, sesionHelper)
+    
+
+    ws.on('message', (data) => {
+        
+        controladoraMensajes.recibido(JSON.parse(data), ws, sesionHelper)
 
 
     });
+    let res = '🤓 Hola! ¿En qué puedo ayudarte?';
 
-    //send immediatly a feedback to the incoming connection    
-    ws.send(`Hola! ¿En qué puedo ayudarte? : id: ${sesionHelper.getMetadata(ws).id}`);
+    sesionHelper.enviarMensaje(ws, res) 
 
 });
 
-//start our server
+
+
 server.listen(process.env.PORT || 3000, () => {
     console.log(`Server started on port ${server.address().port} :)`);
 });

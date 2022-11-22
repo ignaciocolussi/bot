@@ -11,7 +11,7 @@ class sesionHelper {
 
     }
 
-    getIP() {
+    getIP(ws) {
         return this.#clientes.get(ws).ip;
     }
 
@@ -28,11 +28,14 @@ class sesionHelper {
     }
 
     setIntencion(ws, int) {
-        this.#clientes.set(ws, { ...this.#clientes.get(ws), intencion: int })
+        if(int != 'saludo' && int != 'final' && int != 'agradecimiento'){
+            this.#clientes.set(ws, { ...this.#clientes.get(ws), intencion: int })
+        }
+        
     }
 
     getIntencion(ws) {
-        return this.#clientes.get(ws).intencion.intencionConMayorPuntaje.intencion;
+        return this.#clientes.get(ws).intencion?.intencionConMayorPuntaje?.intencion;
     }
 
     getPuntajesIntenciones(ws) {
@@ -47,6 +50,12 @@ class sesionHelper {
         return this.#clientes.get(ws).entidades;
     }
 
+    enviarMensaje(ws, mensaje, object){
+        
+        let data=JSON.stringify({"data":mensaje, "object": object});
+        ws.send(data)
+    }
+
     async cerrarSesion(ws) {
         let conversacion = new modeloConversacion();
         conversacion.id = this.#clientes.get(ws).id;
@@ -59,6 +68,7 @@ class sesionHelper {
         await conversacion.save();
         console.debug(conversacion);
         this.#clientes.delete(ws);
+        ws.close();
     }
 }
 
