@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const entidades = require('../../helpers/entidades');
+const entidades = require('../helpers/entidades');
 
 const EntidadesHelper = new entidades();
 const m3o = require("m3o").default(process.env.M3O_TOKEN);

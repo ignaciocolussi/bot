@@ -1,6 +1,6 @@
-const HelperIntenciones = require('../../helpers/intenciones');
-const HelperEntidades = require('../../helpers/entidades');
-const eventos = require('../../eventos/eventos');
+const HelperIntenciones = require('../helpers/intenciones');
+const HelperEntidades = require('../helpers/entidades');
+const eventos = require('../eventos/eventos');
 
 const intencionHelper = new HelperIntenciones();
 

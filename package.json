@@ -2,7 +2,7 @@
   "name": "bot",
   "version": "1.0.0",
   "description": "Prueba Tecnica",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=test nodemon app.js"

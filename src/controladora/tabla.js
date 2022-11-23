@@ -1,5 +1,5 @@
-const entidades = require('../../helpers/entidades');
-const tablaspos = require('../../helpers/tablaPosiciones');
+const entidades = require('../helpers/entidades');
+const tablaspos = require('../helpers/tablaPosiciones');
 const EntidadesHelper = new entidades();
 const TablaPosicionesHelper = new tablaspos();
 

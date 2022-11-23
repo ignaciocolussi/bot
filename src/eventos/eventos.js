@@ -1,10 +1,10 @@
 const EventEmitter = require('events');
-const controladoraSaludos = require('../src/controladora/saludos');
-const controladoraAgradecimiento = require('../src/controladora/agradecimiento');
-const controladoraClima = require('../src/controladora/clima')
-const controladoraTablas = require('../src/controladora/tabla')
-const controladoraCotizacion = require('../src/controladora/cotizacion')
-const controladoraHorarios = require('../src/controladora/horarios')
+const controladoraSaludos = require('../controladora/saludos');
+const controladoraAgradecimiento = require('../controladora/agradecimiento');
+const controladoraClima = require('../controladora/clima')
+const controladoraTablas = require('../controladora/tabla')
+const controladoraCotizacion = require('../controladora/cotizacion')
+const controladoraHorarios = require('../controladora/horarios')
 
 const emitter = new EventEmitter()
 

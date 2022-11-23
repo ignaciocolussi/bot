@@ -1,7 +1,7 @@
 const { response } = require('express');
 const axios = require("axios");
-const entidades = require('../../helpers/entidades');
-const accuweather = require('../../helpers/accuweather');
+const entidades = require('../helpers/entidades');
+const accuweather = require('../helpers/accuweather');
 const EntidadesHelper = new entidades();
 const AccuWeatherHelper = new accuweather();
 
