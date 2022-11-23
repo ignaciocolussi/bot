@@ -21,20 +21,20 @@ const wss = new WebSocket.Server({ server });
 
 // eventos del websocket
 wss.on('connection', (ws, req) => {
-    sesionHelper.nuevaSesion(ws, req.socket.remoteAddress);
+    sesionHelper.nuevaSesion(ws, req.socket.remoteAddress.replace('::ffff:', ''));
 
     ws.on('message', (data) => {
         controladoraMensajes.recibido(JSON.parse(data), ws)
     });
 
     let res = '🤓 Hola! ¿En qué puedo ayudarte?';
-    sesionHelper.enviarMensaje(ws, res) 
+    sesionHelper.enviarMensaje(ws, res)
 
 });
 
 app.get("/ping", (req, res) => {
     res.status(200).send('Ok');
-   });
+});
 
 
 server.listen(process.env.PORT || 3000, () => {
