@@ -5,7 +5,7 @@ var express = require('express');
 const http = require('http')
 const WebSocket = require('ws');
 const HelperSesion = require('./helpers/sesion')
-const mongo = require('./mongo');
+
 const sesionHelper = new HelperSesion();
 
 const controladoraMensajes = require('./controladora/mensajes');
