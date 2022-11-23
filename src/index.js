@@ -13,33 +13,31 @@ const controladoraMensajes = require('./controladora/mensajes');
 // Ejecutar Express
 var app = express();
 
-
-//initialize a simple http server
+//Inicializar el servidor
 const server = http.createServer(app);
 
-//initialize the WebSocket server instance
+//Inicializar la instacia de websocket
 const wss = new WebSocket.Server({ server });
 
 
-
+// eventos del websocket
 wss.on('connection', (ws, req) => {
     sesionHelper.nuevaSesion(ws, req.socket.remoteAddress);
-    
 
     ws.on('message', (data) => {
-        
         controladoraMensajes.recibido(JSON.parse(data), ws, sesionHelper)
-
-
     });
-    let res = '🤓 Hola! ¿En qué puedo ayudarte?';
 
+    let res = '🤓 Hola! ¿En qué puedo ayudarte?';
     sesionHelper.enviarMensaje(ws, res) 
 
 });
 
+app.get("/ping", (req, res) => {
+    res.status(200).send('Ok');
+   });
 
 
-server.listen(process.env.PORT || 3000, () => {
-    console.log(`Server started on port ${server.address().port} :)`);
+server.listen(process.env.PORT || 80, () => {
+    console.log(`Servidor iniciado en puerto ${server.address().port} :)`);
 });

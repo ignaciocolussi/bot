@@ -13,10 +13,7 @@ const clima = async (ws, sesionHelper) => {
         try {
             console.log(`Buscar clima de ${ciudad}`);
             let clima = await AccuWeatherHelper.obtenerClimaPorLocalidad(ciudad);
-            
             sesionHelper.enviarMensaje(ws, clima) 
-            
-
         } catch (error) {
             sesionHelper.enviarMensaje(ws, `Upss... Ha habido un error al obtener los datos.. 😭`)
         }
@@ -27,11 +24,8 @@ const clima = async (ws, sesionHelper) => {
         try {
             console.debug(sesionHelper.getIP(ws));
             let clima = await AccuWeatherHelper.obtenerClimaPorIP(sesionHelper.getIP(ws));
-            console.debug(clima);
             sesionHelper.enviarMensaje(ws, clima);
-
         } catch (error) {
-            console.debug(error);
             sesionHelper.enviarMensaje(ws, `Upss... Ha habido un error al obtener los datos.. 😭`)
         }
     }

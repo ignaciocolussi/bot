@@ -12,32 +12,25 @@ const cotizacion = async (ws, sesionHelper) => {
     
     if(entidades){
     sesionHelper.setEntidades(ws, entidades)
-    
-    // Obtener tabla desde mongoDB
-    
+
     try {
         sesionHelper.enviarMensaje(ws, "🔍 Estoy buscando los datos!... ")
-
             let response = await m3o.price.get({
               currency: 'USD',
-              name: "bitcoin"
+              name: entidades
             });
-           
-            
+      
          if(!response){
             sesionHelper.enviarMensaje(ws, `No encontre cotizaciones para ${entidades}`)
          }else{
             let res = `La cotizacion de ${entidades.toUpperCase()}: ${response.values[0].price} ${response.values[0].currency}`;
             sesionHelper.enviarMensaje(ws, res);
          }
-         
 
         } catch (error) {
-            
             console.debug(error)
             sesionHelper.enviarMensaje(ws, `Upss... ha habido un error al realizar la busqueda 😭`)
         }
-    
     }
 
     if(!entidades){

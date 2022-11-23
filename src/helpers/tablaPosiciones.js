@@ -9,8 +9,6 @@ class tablaPosicionesHelper {
 
     }
 
-
-
     async inicializardDB(){
         this.#connection = mongoose.createConnection(this.#db_uri);
         return this.#connection.model('Tabla', require('../modelo/tablaPosiciones'));

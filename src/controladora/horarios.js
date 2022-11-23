@@ -18,30 +18,21 @@ const obtenerFecha = async (ws, sesionHelper) => {
     try {
         sesionHelper.enviarMensaje(ws, "🔍 Estoy buscando los datos!... ")
 
-
-            let response = await await m3o.time.zone({
+            let respuesta = await await m3o.time.zone({
             location: entidades,
             });
-
             
-           
-            
-         if(!response){
+         if(!respuesta){
             sesionHelper.enviarMensaje(ws, `No encontre informacion para ${entidades}`)
          }else{
-            let separado = response.localtime.split(' ');
+            let separado = respuesta.localtime.split(' ');
             
-            let res = `En ${entidades.toUpperCase()} la hora es ${separado[1]} del ${separado[0].split('-').reverse().join('/')} (Huso horario: ${ response.abbreviation})`;
+            let res = `En ${entidades.toUpperCase()} la hora es ${separado[1]} del ${separado[0].split('-').reverse().join('/')} (Huso horario: ${ respuesta.abbreviation})`;
             sesionHelper.enviarMensaje(ws, res);
          }
-         
-
-        } catch (error) {
-            
-           
+          } catch (error) {
             sesionHelper.enviarMensaje(ws, `Upss... ha habido un error al realizar la busqueda 😭`)
         }
-    
     }
 
     if(!entidades){

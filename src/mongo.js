@@ -9,7 +9,7 @@ const connectionString = NODE_ENV == 'test'
 
 
 if (!connectionString) {
-  console.error('No connection String')
+  console.error('No hay string de conexion a mongo')
 }
 
 mongoose.Promise = global.Promise;
@@ -20,7 +20,7 @@ mongoose.connect(connectionString, {
   useUnifiedTopology: true,
 })
   .then(() => {
-    console.log('✔ Database connected')
+    console.log('✔ Se conecto la DB')
   }).catch(err => {
     console.error(err)
   })

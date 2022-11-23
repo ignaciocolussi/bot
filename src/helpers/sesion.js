@@ -1,5 +1,5 @@
 const uuidv4 = require('../utils/uuid')
-const modeloConversacion = require('../modelo/conversacion')
+
 
 class sesionHelper {
     #clientes = new Map();
@@ -57,16 +57,6 @@ class sesionHelper {
     }
 
     async cerrarSesion(ws) {
-        let conversacion = new modeloConversacion();
-        conversacion.id = this.#clientes.get(ws).id;
-        conversacion.ip = this.#clientes.get(ws).ip;
-        conversacion.mensaje = this.#clientes.get(ws).mensaje;
-        conversacion.intencion = this.#clientes.get(ws).intencion.intencionConMayorPuntaje.intencion;
-        conversacion.entidades.push(this.#clientes.get(ws).mensaje.entidades);
-        conversacion.puntajes = this.#clientes.get(ws).intencion.puntajes;
-        conversacion.fechaInicio = this.#clientes.get(ws).fecha;
-        await conversacion.save();
-        console.debug(conversacion);
         this.#clientes.delete(ws);
         ws.close();
     }
