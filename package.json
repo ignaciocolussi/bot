@@ -5,8 +5,6 @@
   "main": "src/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
-    "test": "cross-env NODE_ENV=test jest --verbose --silent tests/message.test.js ",
-    "test:watch": "npm run test -- --watch",
     "start-dev": "cross-env NODE_ENV=test nodemon index.js"
   },
   "repository": {
