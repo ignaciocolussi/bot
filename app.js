@@ -38,6 +38,6 @@ app.get("/ping", (req, res) => {
    });
 
 
-server.listen(process.env.PORT || 80, () => {
+server.listen(process.env.PORT || 3000, () => {
     console.log(`Servidor iniciado en puerto ${server.address().port} :)`);
 });

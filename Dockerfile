@@ -20,9 +20,8 @@ COPY package*.json ./
 # Bundle app source
 COPY src/ /usr/src
 
-RUN openssl req -nodes -new -x509 -keyout /usr/src/server.key -out /usr/src/server.cert
 
-EXPOSE 3000
+EXPOSE 80
 
 # 👇 new migrate and start app script
 CMD [  "npm", "run", "start" ]

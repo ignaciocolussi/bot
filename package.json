@@ -2,10 +2,10 @@
   "name": "bot",
   "version": "1.0.0",
   "description": "Prueba Tecnica",
-  "main": "src/index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
-    "start-dev": "cross-env NODE_ENV=test nodemon index.js"
+    "start": "cross-env NODE_ENV=production node app.js",
+    "start-dev": "cross-env NODE_ENV=test nodemon app.js"
   },
   "repository": {
     "type": "git",

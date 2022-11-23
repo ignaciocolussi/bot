@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/52338540-cfbc-4f28-b4af-430d8a51be74/appservices/subscriptions/52338540-cfbc-4f28-b4af-430d8a51be74/resourceGroups/BotBackend/providers/Microsoft.Web/sites/botPruebaBackend",
+    "appService.deploySubpath": "."
+}
