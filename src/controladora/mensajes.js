@@ -1,10 +1,9 @@
-const HelperIntenciones = require('../helpers/intenciones');
-const HelperEntidades = require('../helpers/entidades');
+const sesionHelper = require('../helpers/sesion');
 const eventos = require('../eventos/eventos');
 
-const intencionHelper = new HelperIntenciones();
+const intencionHelper = require('../helpers/intenciones');
 
-const recibido = (mes, ws, sesionHelper) => {
+const recibido = (mes, ws) => {
     
     const mensaje = mes.message;
     if(!mes.message){
@@ -17,10 +16,10 @@ const recibido = (mes, ws, sesionHelper) => {
 
     if (resIntent.intencionConMayorPuntaje.puntaje !== undefined) {
         sesionHelper.setIntencion(ws, resIntent);
-        eventos.emitter.emit(resIntent.intencionConMayorPuntaje.intencion, ws, sesionHelper);
+        eventos.emitter.emit(resIntent.intencionConMayorPuntaje.intencion, ws);
     } else {
         if(sesionHelper.getIntencion(ws) !== undefined){   
-            eventos.emitter.emit(sesionHelper.getIntencion(ws), ws, sesionHelper);
+            eventos.emitter.emit(sesionHelper.getIntencion(ws), ws);
         }else{
             sesionHelper.enviarMensaje(ws,`Lo siento, no he entendido tu mensaje.`)
         }

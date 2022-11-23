@@ -32,4 +32,4 @@ class intencionesHelper {
     }
 }
 
-module.exports = intencionesHelper;
+module.exports = new intencionesHelper();

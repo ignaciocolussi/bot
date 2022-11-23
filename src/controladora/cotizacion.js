@@ -1,13 +1,10 @@
-const { response } = require('express');
-
-const entidades = require('../helpers/entidades');
-
-const EntidadesHelper = new entidades();
+const sesionHelper = require('../helpers/sesion');
+const EntidadesHelper = require('../helpers/entidades');
 const m3o = require("m3o").default(process.env.M3O_TOKEN);
 
 
 
-const cotizacion = async (ws, sesionHelper) => {
+const cotizacion = async (ws) => {
     let entidades = EntidadesHelper.obtenerMonedas(sesionHelper.getMensaje(ws));
     
     if(entidades){

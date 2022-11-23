@@ -1,11 +1,8 @@
-const { response } = require('express');
-const axios = require("axios");
-const entidades = require('../helpers/entidades');
-const accuweather = require('../helpers/accuweather');
-const EntidadesHelper = new entidades();
-const AccuWeatherHelper = new accuweather();
+const sesionHelper = require('../helpers/sesion');
+const EntidadesHelper = require('../helpers/entidades');
+const AccuWeatherHelper = require('../helpers/accuweather');
 
-const clima = async (ws, sesionHelper) => {
+const clima = async (ws) => {
     let ciudad = EntidadesHelper.obtenerCiudad(sesionHelper.getMensaje(ws));
     
     if (ciudad) {

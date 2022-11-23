@@ -1,9 +1,8 @@
-const entidades = require('../helpers/entidades');
-const tablaspos = require('../helpers/tablaPosiciones');
-const EntidadesHelper = new entidades();
-const TablaPosicionesHelper = new tablaspos();
+const sesionHelper = require('../helpers/sesion');
+const EntidadesHelper = require('../helpers/entidades');
+const TablaPosicionesHelper = require('../helpers/tablaPosiciones');
 
-const tabla = async (ws, sesionHelper) => {
+const tabla = async (ws) => {
     let entidades = EntidadesHelper.obtenerPais(sesionHelper.getMensaje(ws));
     
     if(entidades){
@@ -24,6 +23,7 @@ const tabla = async (ws, sesionHelper) => {
             sesionHelper.enviarMensaje(ws, null, tabla);
          }
         } catch (error) {
+            console.debug(error)
             sesionHelper.enviarMensaje(ws, `Upss... ha habido un error al realizar la busqueda 😭`)
         }
     }

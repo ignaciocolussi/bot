@@ -9,32 +9,32 @@ const controladoraHorarios = require('../controladora/horarios')
 const emitter = new EventEmitter()
 
 
-emitter.on('clima', (ws, sesionHelper) => {
-  controladoraClima.clima(ws, sesionHelper)
+emitter.on('clima', (ws) => {
+  controladoraClima.clima(ws)
 })
 
-emitter.on('tabla', (ws, sesionHelper) => {
-  controladoraTablas.tabla(ws, sesionHelper)
+emitter.on('tabla', (ws) => {
+  controladoraTablas.tabla(ws)
 })
 
-emitter.on('cotizacion', (ws, sesionHelper) => {
-  controladoraCotizacion.cotizacion(ws, sesionHelper)
+emitter.on('cotizacion', (ws) => {
+  controladoraCotizacion.cotizacion(ws)
 })
 
-emitter.on('horarios', (ws, sesionHelper) => {
-  controladoraHorarios.obtenerFecha(ws, sesionHelper)
+emitter.on('horarios', (ws) => {
+  controladoraHorarios.obtenerFecha(ws)
 })
 
-emitter.on('saludo', (ws, sesionHelper) => {
-  controladoraSaludos.saludoInicial(ws, sesionHelper);
+emitter.on('saludo', (ws) => {
+  controladoraSaludos.saludoInicial(ws);
 })
 
-emitter.on('final', (ws, sesionHelper) => {
-  controladoraSaludos.saludoFinal(ws, sesionHelper);
+emitter.on('final', (ws) => {
+  controladoraSaludos.saludoFinal(ws);
 })
 
-emitter.on('agradecimiento', (ws, sesionHelper) => {
-  controladoraAgradecimiento.responder(ws, sesionHelper);
+emitter.on('agradecimiento', (ws) => {
+  controladoraAgradecimiento.responder(ws);
 })
 
 

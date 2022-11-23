@@ -62,4 +62,4 @@ class sesionHelper {
     }
 }
 
-module.exports = sesionHelper;
+module.exports = new sesionHelper();

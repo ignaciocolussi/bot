@@ -4,9 +4,8 @@ require('dotenv').config()
 var express = require('express');
 const http = require('http')
 const WebSocket = require('ws');
-const HelperSesion = require('./helpers/sesion')
 
-const sesionHelper = new HelperSesion();
+const sesionHelper = require('./helpers/sesion');
 
 const controladoraMensajes = require('./controladora/mensajes');
 
@@ -25,7 +24,7 @@ wss.on('connection', (ws, req) => {
     sesionHelper.nuevaSesion(ws, req.socket.remoteAddress);
 
     ws.on('message', (data) => {
-        controladoraMensajes.recibido(JSON.parse(data), ws, sesionHelper)
+        controladoraMensajes.recibido(JSON.parse(data), ws)
     });
 
     let res = '🤓 Hola! ¿En qué puedo ayudarte?';

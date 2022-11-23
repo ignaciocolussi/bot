@@ -60,4 +60,4 @@ class AccuWeatherHelper {
     }
 }
 
-module.exports = AccuWeatherHelper;
+module.exports = new AccuWeatherHelper();

@@ -58,4 +58,4 @@ class EntidadesHelper {
     }
 }
 
-module.exports = EntidadesHelper;
+module.exports = new EntidadesHelper();

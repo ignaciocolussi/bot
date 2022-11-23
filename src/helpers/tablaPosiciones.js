@@ -27,4 +27,4 @@ class tablaPosicionesHelper {
     }
 }
 
-module.exports = tablaPosicionesHelper;
+module.exports = new tablaPosicionesHelper();
