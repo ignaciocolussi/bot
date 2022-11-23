@@ -24,22 +24,25 @@ const wss = new WebSocket.Server({ server });
 
 wss.on('connection', (ws, req) => {
     sesionHelper.nuevaSesion(ws, req.socket.remoteAddress);
-    
+
 
     ws.on('message', (data) => {
-        
+
         controladoraMensajes.recibido(JSON.parse(data), ws, sesionHelper)
 
 
     });
     let res = '🤓 Hola! ¿En qué puedo ayudarte?';
 
-    sesionHelper.enviarMensaje(ws, res) 
+    sesionHelper.enviarMensaje(ws, res)
 
 });
 
+app.get("/ping", (req, res) => {
+    res.status(200).send('Ok');
+   });
 
 
-server.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT || 80, () => {
     console.log(`Server started on port ${server.address().port} :)`);
 });
