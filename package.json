@@ -4,8 +4,8 @@
   "description": "Prueba Tecnica",
   "main": "src/app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
-    "start-dev": "cross-env NODE_ENV=test nodemon app.js"
+    "start": "cross-env NODE_ENV=production node src/app.js",
+    "start-dev": "cross-env NODE_ENV=test nodemon src/app.js"
   },
   "repository": {
     "type": "git",
