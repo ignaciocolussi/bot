@@ -1,0 +1,23 @@
+version: "3"
+services:
+    backend:
+        image: ignaciocolussi/pruebatecnica:latest
+        restart: always
+        container_name: "bot-backend"
+        environment:
+          - MONGO_DB_URI=mongodb+srv://mongodb:vN4PmbP4PztQ@riveropascluster.jrfrq.mongodb.net/test?authSource=admin&replicaSet=atlas-7gwaej-shard-0&readPreference=primary&ssl=true
+          - ACCUWEATHER_API_KEY=8RtqCv32l4dAZy1xj4b58sqGT0VCwEAA
+          - MONGO_DB_TABLASPOS=mongodb+srv://user:KQeWMo0uN3hAr4qO@cluster0.msmzp7t.mongodb.net/tablaspos
+          - M3O_TOKEN=NDk1NDI1NDItYzQ1NC00NWM0LWEzZDYtMjQxNmNmNTUyMjMw
+        ports:
+            - "3000:3000"
+
+
+    frontend:
+        depends_on:
+            - 'backend'
+        image: ignaciocolussi/botpruebatecnica-front:latest
+        restart: always
+        container_name: "bot-frontend"
+        ports:
+            - "80:80"
