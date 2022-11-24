@@ -1,6 +1,6 @@
 const sesionHelper = require('../helpers/sesion');
 const EntidadesHelper = require('../helpers/entidades');
-const m3o = require("m3o").default(process.env.M3O_TOKEN);
+const m3oHelper = require('../helpers/m3o');
 
 
 
@@ -12,10 +12,7 @@ const cotizacion = async (ws) => {
 
     try {
         sesionHelper.enviarMensaje(ws, "🔍 Estoy buscando los datos!... ")
-            let response = await m3o.price.get({
-              currency: 'USD',
-              name: entidades
-            });
+            let response = await m3oHelper.obtenerCotizacion(entidades)
       
          if(!response){
             sesionHelper.enviarMensaje(ws, `No encontre cotizaciones para ${entidades}`)

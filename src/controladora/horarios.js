@@ -1,6 +1,6 @@
 const sesionHelper = require('../helpers/sesion');
 const EntidadesHelper = require('../helpers/entidades');
-const m3o = require("m3o").default(process.env.M3O_TOKEN);
+const m3oHelper = require('../helpers/m3o');
 
 
 
@@ -15,16 +15,13 @@ const obtenerFecha = async (ws) => {
     try {
         sesionHelper.enviarMensaje(ws, "🔍 Estoy buscando los datos!... ")
 
-            let respuesta = await await m3o.time.zone({
-            location: entidades,
-            });
+            let respuesta = await m3oHelper.obtenerFechaHora(entidades);
             
          if(!respuesta){
             sesionHelper.enviarMensaje(ws, `No encontre informacion para ${entidades}`)
          }else{
-            let separado = respuesta.localtime.split(' ');
-            
-            let res = `En ${entidades.toUpperCase()} la hora es ${separado[1]} del ${separado[0].split('-').reverse().join('/')} (Huso horario: ${ respuesta.abbreviation})`;
+                       
+            let res = `En ${entidades.toUpperCase()} la hora es ${respuesta.hora} del ${respuesta.fecha} (Huso horario: ${ respuesta.husoHorario})`;
             sesionHelper.enviarMensaje(ws, res);
          }
           } catch (error) {

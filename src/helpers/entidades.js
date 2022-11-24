@@ -6,51 +6,30 @@ class EntidadesHelper {
     obtenerPais(req) {
         let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').toLowerCase().split(" ");
 
-        for (const pais of this.entidades.paises) {
-
-            for (const palabra of newreq) {
-
-
-                let encontrada = (palabra == pais.pais) ? true : false;
-
-                if (encontrada) {
-                    return pais.pais;
-                };
-
-            }
-        }
+        return this.obtenerEntidad(newreq, this.entidades.paises)
     }
 
     obtenerCiudad(req) {
         let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').toLowerCase().split(" ");
-
-        for (const ciudad of this.entidades.ciudades) {
-
-            for (const palabra of newreq) {
-
-
-                let encontrada = (palabra == ciudad.nombre) ? true : false;
-
-                if (encontrada) {
-                    return ciudad.nombre;
-                };
-
-            }
+        return this.obtenerEntidad(newreq, this.entidades.ciudades)
         }
-    }
 
     obtenerMonedas(req) {
         let newreq = req.replace(/[^\p{L}\p{N}\s]/gu, '').toLowerCase().split(" ");
+        return this.obtenerEntidad(newreq, this.entidades.monedas)
+       
+    }
 
-        for (const palabra of newreq) {
+    obtenerEntidad(busqueda, tipo){
+        for (const palabra of busqueda) {
 
-            for (const moneda of this.entidades.monedas) {
+            for (const entidad of tipo) {
 
 
-                let encontrada = (palabra == moneda) ? true : false;
+                let encontrada = (palabra == entidad) ? true : false;
 
                 if (encontrada) {
-                    return moneda;
+                    return entidad;
                 };
 
             }

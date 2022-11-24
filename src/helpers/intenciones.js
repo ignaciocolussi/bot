@@ -8,7 +8,7 @@ class intencionesHelper {
 
     obtenerIntencion(req) {
         let newreq = req.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, '').split(" ")
-        //console.log(newreq);
+        
         let puntajes = []
         let intencionConMayorPuntaje = {}
 
